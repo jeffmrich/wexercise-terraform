@@ -26,13 +26,23 @@ pipeline {
         }
       }
     }
-    stage('terraform plan -out=/tmp/tfplan') {
+    stage('terraform plan') {
       steps {
         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
         credentialsId: '68c7bc8f-e9cd-4c7c-a7bd-50216fe4bb4d',
         accessKeyVariable: 'AWS_ACCESS_KEY_ID',
         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-            sh 'cd terraform && terraform plan'
+            sh 'cd terraform && terraform plan -out=/tmp/tfplan'
+        }
+      }
+    }
+    stage('terraform apply') {
+      steps {
+        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
+        credentialsId: '68c7bc8f-e9cd-4c7c-a7bd-50216fe4bb4d',
+        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+            sh 'cd terraform && terraform apply --auto-approve /tmp/tfplan'
         }
       }
     }
