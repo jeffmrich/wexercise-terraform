@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "db_backup_bucket" {
-  bucket = "automode-cluster-four-bucket"
+  bucket = "automode-cluster-five-bucket"
   tags = {
-    Name = "automode-cluster-four-bucket"
+    Name = "automode-cluster-five-bucket"
   }
 }
