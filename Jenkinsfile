@@ -52,7 +52,9 @@ pipeline {
                    credentialsId: '68c7bc8f-e9cd-4c7c-a7bd-50216fe4bb4d',
                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                       sh 'cd terraform && terraform validate'
+                       dir('terraform') {
+                           sh 'terraform validate'
+                       } 
                    }
             }
         }
@@ -65,7 +67,9 @@ pipeline {
                    credentialsId: '68c7bc8f-e9cd-4c7c-a7bd-50216fe4bb4d',
                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                       sh 'cd terraform && terraform plan -out=/tmp/tfplan'
+                       dir('terraform') {
+                           sh 'terraform plan -out=/tmp/tfplan'
+                       } 
                    }
             }
         }
@@ -78,7 +82,9 @@ pipeline {
                    credentialsId: '68c7bc8f-e9cd-4c7c-a7bd-50216fe4bb4d',
                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                       sh 'cd terraform && terraform apply --auto-approve /tmp/tfplan'
+                       dir('terraform') {
+                           sh 'terraform apply --auto-approve /tmp/tfplan'
+                       } 
                    }
             }
         }
@@ -91,7 +97,9 @@ pipeline {
                    credentialsId: '68c7bc8f-e9cd-4c7c-a7bd-50216fe4bb4d',
                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                       sh 'cd terraform && terraform destroy --auto-approve'
+                       dir('terraform') {
+                           sh 'terraform destroy --auto-approve'
+                       } 
                    }
             } 
         }
