@@ -78,7 +78,7 @@ pipeline {
                    credentialsId: '68c7bc8f-e9cd-4c7c-a7bd-50216fe4bb4d',
                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                       sh 'cd terraform && terraform apply --auto-approve -out=/tmp/tfplan'
+                       sh 'cd terraform && terraform apply --auto-approve /tmp/tfplan'
                    }
             }
         }
