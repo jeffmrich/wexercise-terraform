@@ -25,13 +25,60 @@ pipeline {
                 expression { params.ACTION == 'build' }
             }
             steps {
-                echo "Running normal build steps..."
-                // Add your build logic here
+              checkout scm
+            }
+        }
+        stage('terraform init') {
+            when {
+                expression { params.ACTION == 'build' }
+            }
+            steps {
                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
                    credentialsId: '68c7bc8f-e9cd-4c7c-a7bd-50216fe4bb4d',
                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                       sh 'cd terraform && terraform init'
+                       dir('terraform') {
+                           sh 'terraform init'
+                       } 
+                   }
+            }
+        }
+        stage('terraform validate') {
+            when {
+                expression { params.ACTION == 'build' }
+            }
+            steps {
+                   withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
+                   credentialsId: '68c7bc8f-e9cd-4c7c-a7bd-50216fe4bb4d',
+                   accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                   secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                       sh 'cd terraform && terraform validate'
+                   }
+            }
+        }
+        stage('terraform plan') {
+            when {
+                expression { params.ACTION == 'build' }
+            }
+            steps {
+                   withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
+                   credentialsId: '68c7bc8f-e9cd-4c7c-a7bd-50216fe4bb4d',
+                   accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                   secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                       sh 'cd terraform && terraform plan -out=/tmp/tfplan'
+                   }
+            }
+        }
+        stage('terraform apply') {
+            when {
+                expression { params.ACTION == 'build' }
+            }
+            steps {
+                   withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
+                   credentialsId: '68c7bc8f-e9cd-4c7c-a7bd-50216fe4bb4d',
+                   accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                   secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                       sh 'cd terraform && terraform apply --auto-approve -out=/tmp/tfplan'
                    }
             }
         }
@@ -40,8 +87,6 @@ pipeline {
                 expression { params.ACTION == 'destroy' }
             }
             steps {
-                echo "Running terraform destroy..."
-                // Add your destroy logic here
                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
                    credentialsId: '68c7bc8f-e9cd-4c7c-a7bd-50216fe4bb4d',
                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
