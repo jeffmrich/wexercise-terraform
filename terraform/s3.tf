@@ -6,7 +6,7 @@ resource "aws_s3_bucket" "db_backup_bucket" {
 }
 
 resource "aws_s3_bucket_policy" "too_open" {
-  bucket = aws_s3_bucket.my_bucket.id
+  bucket = aws_s3_bucket.db_backup_bucket.id
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -19,8 +19,8 @@ resource "aws_s3_bucket_policy" "too_open" {
           "s3:ListBucket"
         ]
         Resource = [
-          "${aws_s3_bucket.my_bucket.arn}",
-          "${aws_s3_bucket.my_bucket.arn}/*"
+          "${aws_s3_bucket.db_backup_bucket.arn}",
+          "${aws_s3_bucket.db_backup_bucket.arn}/*"
         ]
       }
     ]
