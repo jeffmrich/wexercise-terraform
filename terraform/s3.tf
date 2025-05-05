@@ -1,7 +1,7 @@
 resource "aws_s3_bucket" "db_backup_bucket" {
-  bucket = "automode-cluster-bucket"
+  bucket = "wexercise-cluster-bucket"
   tags = {
-    Name = "automode-cluster-bucket"
+    Name = "wexercise-cluster-bucket"
   }
 }
 
