@@ -34,7 +34,7 @@ pipeline {
             }
             steps {
                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-                   credentialsId: '68c7bc8f-e9cd-4c7c-a7bd-50216fe4bb4d',
+                   credentialsId: 'b2a7bcce-5b43-48e9-a8e3-ea75faa01903',
                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                        dir('terraform') {
@@ -49,7 +49,7 @@ pipeline {
             }
             steps {
                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-                   credentialsId: '68c7bc8f-e9cd-4c7c-a7bd-50216fe4bb4d',
+                   credentialsId: 'b2a7bcce-5b43-48e9-a8e3-ea75faa01903',
                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                        dir('terraform') {
@@ -64,7 +64,7 @@ pipeline {
             }
             steps {
                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-                   credentialsId: '68c7bc8f-e9cd-4c7c-a7bd-50216fe4bb4d',
+                   credentialsId: 'b2a7bcce-5b43-48e9-a8e3-ea75faa01903',
                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                        dir('terraform') {
@@ -79,7 +79,7 @@ pipeline {
             }
             steps {
                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-                   credentialsId: '68c7bc8f-e9cd-4c7c-a7bd-50216fe4bb4d',
+                   credentialsId: 'b2a7bcce-5b43-48e9-a8e3-ea75faa01903',
                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                        dir('terraform') {
@@ -94,7 +94,7 @@ pipeline {
             }
             steps {
                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-                   credentialsId: '68c7bc8f-e9cd-4c7c-a7bd-50216fe4bb4d',
+                   credentialsId: 'b2a7bcce-5b43-48e9-a8e3-ea75faa01903',
                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                        dir('terraform') {
