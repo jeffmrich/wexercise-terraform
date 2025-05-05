@@ -1,6 +1,6 @@
 variable "name" {
   description = "Name of the VPC and EKS Cluster"
-  default     = "automode-cluster-five"
+  default     = "automode-cluster"
   type        = string
 }
 
