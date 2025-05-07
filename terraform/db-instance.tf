@@ -12,7 +12,7 @@ resource "aws_security_group" "db-sg" {
     from_port   = 27017
     to_port     = 27017
     protocol    = "tcp"
-    cidr_blocks = ["10.0.1.0/24"]
+    cidr_blocks = ["10.0.7.0/24"]
     # Allow DB traffic from private subnet
   }
 
