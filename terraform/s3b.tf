@@ -1,6 +1,6 @@
-resource "aws_s3_bucket" "test_bucket" {
-  bucket = "test-bucket"
+resource "aws_s3_bucket" "wexercise-test-cluster-bucket" {
+  bucket = "wexercise-test-cluster-bucket"
   tags = {
-    Name = "test-bucket"
+    Name = "wexercise-test-cluster-bucket"
   }
 }
